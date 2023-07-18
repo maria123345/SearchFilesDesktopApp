@@ -1,0 +1,17 @@
+C:\Users\maria.ghafar\source\repos\SearchMCIDApp\obj\Debug\net6.0-windows\SearchMCIDApp.csproj.AssemblyReference.cache
+C:\Users\maria.ghafar\source\repos\SearchMCIDApp\obj\Debug\net6.0-windows\SearchMCIDApp.Form1.resources
+C:\Users\maria.ghafar\source\repos\SearchMCIDApp\obj\Debug\net6.0-windows\SearchMCIDApp.csproj.GenerateResource.cache
+C:\Users\maria.ghafar\source\repos\SearchMCIDApp\obj\Debug\net6.0-windows\SearchMCIDApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\maria.ghafar\source\repos\SearchMCIDApp\obj\Debug\net6.0-windows\SearchMCIDApp.AssemblyInfoInputs.cache
+C:\Users\maria.ghafar\source\repos\SearchMCIDApp\obj\Debug\net6.0-windows\SearchMCIDApp.AssemblyInfo.cs
+C:\Users\maria.ghafar\source\repos\SearchMCIDApp\obj\Debug\net6.0-windows\SearchMCIDApp.csproj.CoreCompileInputs.cache
+C:\Users\maria.ghafar\source\repos\SearchMCIDApp\bin\Debug\net6.0-windows\SearchMCIDApp.exe
+C:\Users\maria.ghafar\source\repos\SearchMCIDApp\bin\Debug\net6.0-windows\SearchMCIDApp.deps.json
+C:\Users\maria.ghafar\source\repos\SearchMCIDApp\bin\Debug\net6.0-windows\SearchMCIDApp.runtimeconfig.json
+C:\Users\maria.ghafar\source\repos\SearchMCIDApp\bin\Debug\net6.0-windows\SearchMCIDApp.dll
+C:\Users\maria.ghafar\source\repos\SearchMCIDApp\bin\Debug\net6.0-windows\SearchMCIDApp.pdb
+C:\Users\maria.ghafar\source\repos\SearchMCIDApp\obj\Debug\net6.0-windows\SearchMCIDApp.dll
+C:\Users\maria.ghafar\source\repos\SearchMCIDApp\obj\Debug\net6.0-windows\refint\SearchMCIDApp.dll
+C:\Users\maria.ghafar\source\repos\SearchMCIDApp\obj\Debug\net6.0-windows\SearchMCIDApp.pdb
+C:\Users\maria.ghafar\source\repos\SearchMCIDApp\obj\Debug\net6.0-windows\SearchMCIDApp.genruntimeconfig.cache
+C:\Users\maria.ghafar\source\repos\SearchMCIDApp\obj\Debug\net6.0-windows\ref\SearchMCIDApp.dll
