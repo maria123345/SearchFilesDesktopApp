@@ -34,13 +34,23 @@
             TxtDestinationPath = new TextBox();
             LblSearchDirectoryPath = new Label();
             LblSearchDestinationPath = new Label();
+            FromdateTime = new DateTimePicker();
+            TodateTime = new DateTimePicker();
+            Lbl = new Label();
+            LblTo = new Label();
+            btnSearchDirectoryPath = new Button();
+            btnDestinationPath = new Button();
+            dataGridView1 = new DataGridView();
+            FileName = new DataGridViewTextBoxColumn();
+            Status = new DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // btnupload
             // 
-            btnupload.Location = new Point(467, 85);
+            btnupload.Location = new Point(567, 89);
             btnupload.Name = "btnupload";
-            btnupload.Size = new Size(75, 23);
+            btnupload.Size = new Size(174, 23);
             btnupload.TabIndex = 0;
             btnupload.Text = "upload file";
             btnupload.UseVisualStyleBackColor = true;
@@ -94,11 +104,90 @@
             LblSearchDestinationPath.TabIndex = 5;
             LblSearchDestinationPath.Text = "Search Diestination Path";
             // 
+            // FromdateTime
+            // 
+            FromdateTime.Location = new Point(167, 37);
+            FromdateTime.Name = "FromdateTime";
+            FromdateTime.Size = new Size(194, 23);
+            FromdateTime.TabIndex = 6;
+            // 
+            // TodateTime
+            // 
+            TodateTime.Location = new Point(467, 35);
+            TodateTime.Name = "TodateTime";
+            TodateTime.Size = new Size(200, 23);
+            TodateTime.TabIndex = 7;
+            // 
+            // Lbl
+            // 
+            Lbl.AutoSize = true;
+            Lbl.Location = new Point(88, 41);
+            Lbl.Name = "Lbl";
+            Lbl.Size = new Size(35, 15);
+            Lbl.TabIndex = 8;
+            Lbl.Text = "From";
+            // 
+            // LblTo
+            // 
+            LblTo.AutoSize = true;
+            LblTo.Location = new Point(396, 41);
+            LblTo.Name = "LblTo";
+            LblTo.Size = new Size(21, 15);
+            LblTo.TabIndex = 9;
+            LblTo.Text = "TO";
+            // 
+            // btnSearchDirectoryPath
+            // 
+            btnSearchDirectoryPath.Location = new Point(567, 161);
+            btnSearchDirectoryPath.Name = "btnSearchDirectoryPath";
+            btnSearchDirectoryPath.Size = new Size(174, 23);
+            btnSearchDirectoryPath.TabIndex = 10;
+            btnSearchDirectoryPath.Text = "Search Directory Path";
+            btnSearchDirectoryPath.UseVisualStyleBackColor = true;
+            btnSearchDirectoryPath.Click += btnSearchDirectoryPath_Click;
+            // 
+            // btnDestinationPath
+            // 
+            btnDestinationPath.Location = new Point(567, 247);
+            btnDestinationPath.Name = "btnDestinationPath";
+            btnDestinationPath.Size = new Size(174, 23);
+            btnDestinationPath.TabIndex = 11;
+            btnDestinationPath.Text = "Destination Path";
+            btnDestinationPath.UseVisualStyleBackColor = true;
+            btnDestinationPath.Click += btnDestinationPath_Click;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { FileName, Status });
+            dataGridView1.Location = new Point(240, 314);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowTemplate.Height = 25;
+            dataGridView1.Size = new Size(501, 251);
+            dataGridView1.TabIndex = 12;
+            // 
+            // FileName
+            // 
+            FileName.HeaderText = "FileName";
+            FileName.Name = "FileName";
+            // 
+            // Status
+            // 
+            Status.HeaderText = "Status";
+            Status.Name = "Status";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(991, 592);
+            Controls.Add(dataGridView1);
+            Controls.Add(btnDestinationPath);
+            Controls.Add(btnSearchDirectoryPath);
+            Controls.Add(LblTo);
+            Controls.Add(Lbl);
+            Controls.Add(TodateTime);
+            Controls.Add(FromdateTime);
             Controls.Add(LblSearchDestinationPath);
             Controls.Add(LblSearchDirectoryPath);
             Controls.Add(TxtDestinationPath);
@@ -107,6 +196,7 @@
             Controls.Add(btnupload);
             Name = "Form1";
             Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -119,5 +209,14 @@
         private TextBox TxtDestinationPath;
         private Label LblSearchDirectoryPath;
         private Label LblSearchDestinationPath;
+        private DateTimePicker FromdateTime;
+        private DateTimePicker TodateTime;
+        private Label Lbl;
+        private Label LblTo;
+        private Button btnSearchDirectoryPath;
+        private Button btnDestinationPath;
+        private DataGridView dataGridView1;
+        private DataGridViewTextBoxColumn FileName;
+        private DataGridViewTextBoxColumn Status;
     }
 }
