@@ -1,0 +1,10 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\crudApplication",
+    "\\crudApplication\\Controllers",
+    "\\crudApplication\\Models"
+  ],
+  "SelectedNode": "\\crudApplication\\Controllers\\EmpAPIController.cs",
+  "PreviewInSolutionExplorer": false
+}

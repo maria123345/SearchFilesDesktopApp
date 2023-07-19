@@ -1,0 +1,178 @@
+﻿@model crudApplication.Models.CompleteEmployeeModel
+
+
+@{
+    ViewData["Title"] = "CreateEmployee";
+}
+
+
+<div class="row">
+    @Html.AntiForgeryToken()
+
+    <form asp-action="AddEmployee">
+        
+
+        @{
+
+            if (TempData["Message"] != null)
+            {
+                <div>
+                    <div>
+                        <label class="control-label">@TempData["Message"].ToString()</label>
+                    </div>
+                </div>
+            }
+        }
+        <fieldset class="form-group border p-3">
+            <legend class=" text-center text-primary">CreateEmployee</legend>
+            @*@HtmlHelper.UnobtrusiveJavaScriptEnabled = false;*@
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @if (Model.employeeForm.Id != 0)
+            {
+                <input type="hidden" asp-for="employeeForm.Id" />
+            }
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+
+                            <label asp-for="employeeForm.Name" class="control-label"></label>
+                            <input asp-for="employeeForm.Name" id="txtName" autocomplete="off" class="form-control" />
+                            <span asp-validation-for="employeeForm.Name" class="text-danger"></span>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+
+                            <label asp-for="employeeForm.LastName" class="control-label"></label>
+                            <input asp-for="employeeForm.LastName" id="txtlName" autocomplete="off" class="form-control" />
+                            <span asp-validation-for="employeeForm.LastName" class="text-danger "></span>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+
+                            <label asp-for="employeeForm.Email" class="control-label"></label>
+                            <input asp-for="employeeForm.Email" autocomplete="off" class="form-control" />
+                            <span asp-validation-for="employeeForm.Email" class="text-danger "></span>
+
+                        </div>
+                    </div>
+
+                    <div class="row inline-flex">
+                        <div class="col-lg-4 col-md-4">
+                            <div class="form-group">
+
+                                <label asp-for="employeeForm.Brithdate" class="control-label"></label>
+                                @Html.TextBoxFor(jd => jd.employeeForm.Brithdate, DateTime.Now.ToString("dd-MMM-yyyy"), new { @class = "form-control", @id = "Brithdate" })
+                                @*<input type="date" value="@DateTime.Now.ToString("dd-MMM-yyyy")" asp-for="Brithdate" class="form-control" />*@
+
+                                <span asp-validation-for="employeeForm.Brithdate" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4">
+                            <div class="form-group">
+
+                                <label asp-for="employeeForm.Joindate" class="control-label"></label>
+                                @Html.TextBoxFor(jd => jd.employeeForm.Joindate, DateTime.Now.ToString("dd-MMM-yyyy"), new { @class = "form-control" })
+                                @*<input asp-for="Joindate" class="form-control" data-val="true" type="date" value="@Model.Joindate" />*@
+                                @*<input type="date" value="@DateTime.Now" asp-for="Joindate" class="form-control" />*@
+                                <span asp-validation-for="employeeForm.Joindate" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4">
+                            <div class="form-group ">
+                                <label asp-for="employeeForm.Gender" class="control-label "></label>
+                                <div class="form-control">
+                                    <input type="radio" asp-for="employeeForm.Gender" value="female" />
+                                    <label asp-for="employeeForm.Gender" class="control-label ">female</label>
+                                    <input type="radio" asp-for="employeeForm.Gender" value="male" />
+                                    <label asp-for="employeeForm.Gender" class="control-label ">male</label>
+                                </div>
+                                <span asp-validation-for="employeeForm.Gender" class="text-danger"></span>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4">
+                            <div class="form-group">
+
+                                <label asp-for="employeeForm.Phone" class="control-label"></label>
+                                <input asp-for="employeeForm.Phone" autocomplete="off" class="form-control" />
+                                <span asp-validation-for="employeeForm.Phone" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4">
+                            <div class="form-group">
+
+
+                                <label asp-for="employeeForm.Department" class="control-label"></label>
+                                <select asp-for="employeeForm.DepID" class="form-control" asp-items="@(new SelectList(ViewBag.Deplist, "ID", "Department"))"></select>
+                                <span asp-validation-for="employeeForm.Department" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="form-group text-center mt-3">
+
+                        @*<input type="button" id="btnbutton" value="Save" class="btn btn-default bg-success" />*@
+                        <input type="submit" value="Save" class="btn btn-default bg-success" />
+                      
+                        @if (Model.employeeForm.Id != 0)
+                        {<a asp-action="Index" class="btn btn-primary">Employee List</a>
+                        }
+
+                    </div>
+
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+@section Scripts
+    {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    @*<script src="~/lib/jquery-validate/jquery.validate.js"></script>*@
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script type="text/javascript">
+        //Add Data Function
+        function Add() {
+            var res = validate();
+            if (res == false) {
+                return false;
+            }
+            var empObj = {
+                EmployeeID: $('#EmployeeID').val(),
+                Name: $('#Name').val(),
+                Age: $('#Age').val(),
+                State: $('#State').val(),
+                Country: $('#Country').val()
+            };
+            $.ajax({
+                url: "/Home/Add",
+                data: JSON.stringify(empObj),
+                type: "POST",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    loadData();
+                    $('#myModal').modal('hide');
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                }
+            });
+        }
+    </script>
+}
+
+@*@section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }*@

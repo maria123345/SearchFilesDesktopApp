@@ -1,6 +1,6 @@
 ﻿namespace SearchMCIDApp
 {
-    partial class Form1
+    partial class FileSearch
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,8 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            btnupload = new Button();
-            LblSourcePath = new Label();
+            btnSourceFile = new Button();
             TxtSearchDirectoryPath = new TextBox();
             TxtDestinationPath = new TextBox();
             LblSearchDirectoryPath = new Label();
@@ -43,50 +42,51 @@
             dataGridView1 = new DataGridView();
             FileName = new DataGridViewTextBoxColumn();
             Status = new DataGridViewTextBoxColumn();
+            txtSourcePath = new TextBox();
+            label1 = new Label();
+            btnGo = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
-            // btnupload
+            // btnSourceFile
             // 
-            btnupload.Location = new Point(567, 89);
-            btnupload.Name = "btnupload";
-            btnupload.Size = new Size(174, 23);
-            btnupload.TabIndex = 0;
-            btnupload.Text = "upload file";
-            btnupload.UseVisualStyleBackColor = true;
-            btnupload.Click += btnupload_Click;
-            // 
-            // LblSourcePath
-            // 
-            LblSourcePath.AutoSize = true;
-            LblSourcePath.Location = new Point(215, 93);
-            LblSourcePath.Name = "LblSourcePath";
-            LblSourcePath.Size = new Size(0, 15);
-            LblSourcePath.TabIndex = 1;
+            btnSourceFile.Location = new Point(433, 105);
+            btnSourceFile.Name = "btnSourceFile";
+            btnSourceFile.Size = new Size(174, 23);
+            btnSourceFile.TabIndex = 0;
+            btnSourceFile.Text = "Source File";
+            btnSourceFile.UseVisualStyleBackColor = true;
+            btnSourceFile.Click += btnupload_Click;
             // 
             // TxtSearchDirectoryPath
             // 
-            TxtSearchDirectoryPath.Location = new Point(349, 156);
+            TxtSearchDirectoryPath.Enabled = false;
+            TxtSearchDirectoryPath.Location = new Point(215, 167);
             TxtSearchDirectoryPath.Multiline = true;
             TxtSearchDirectoryPath.Name = "TxtSearchDirectoryPath";
+            TxtSearchDirectoryPath.PlaceholderText = "Search Directory Path";
+            TxtSearchDirectoryPath.ReadOnly = true;
+            TxtSearchDirectoryPath.RightToLeft = RightToLeft.No;
             TxtSearchDirectoryPath.Size = new Size(193, 30);
             TxtSearchDirectoryPath.TabIndex = 2;
-            TxtSearchDirectoryPath.Text = "Search Directory Path";
             // 
             // TxtDestinationPath
             // 
-            TxtDestinationPath.Location = new Point(346, 244);
+            TxtDestinationPath.Enabled = false;
+            TxtDestinationPath.Location = new Point(212, 237);
             TxtDestinationPath.Multiline = true;
             TxtDestinationPath.Name = "TxtDestinationPath";
+            TxtDestinationPath.PlaceholderText = "Search Diestination Path";
+            TxtDestinationPath.ReadOnly = true;
             TxtDestinationPath.Size = new Size(197, 31);
             TxtDestinationPath.TabIndex = 3;
-            TxtDestinationPath.Text = "Search Diestination Path";
+            TxtDestinationPath.WordWrap = false;
             // 
             // LblSearchDirectoryPath
             // 
             LblSearchDirectoryPath.AutoSize = true;
             LblSearchDirectoryPath.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            LblSearchDirectoryPath.Location = new Point(191, 159);
+            LblSearchDirectoryPath.Location = new Point(57, 170);
             LblSearchDirectoryPath.Name = "LblSearchDirectoryPath";
             LblSearchDirectoryPath.Padding = new Padding(3);
             LblSearchDirectoryPath.Size = new Size(135, 21);
@@ -97,7 +97,7 @@
             // 
             LblSearchDestinationPath.AutoSize = true;
             LblSearchDestinationPath.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            LblSearchDestinationPath.Location = new Point(191, 247);
+            LblSearchDestinationPath.Location = new Point(57, 240);
             LblSearchDestinationPath.Name = "LblSearchDestinationPath";
             LblSearchDestinationPath.Padding = new Padding(3);
             LblSearchDestinationPath.Size = new Size(149, 21);
@@ -106,22 +106,22 @@
             // 
             // FromdateTime
             // 
-            FromdateTime.Location = new Point(167, 37);
+            FromdateTime.Location = new Point(106, 35);
             FromdateTime.Name = "FromdateTime";
-            FromdateTime.Size = new Size(194, 23);
+            FromdateTime.Size = new Size(139, 23);
             FromdateTime.TabIndex = 6;
             // 
             // TodateTime
             // 
-            TodateTime.Location = new Point(467, 35);
+            TodateTime.Location = new Point(333, 35);
             TodateTime.Name = "TodateTime";
-            TodateTime.Size = new Size(200, 23);
+            TodateTime.Size = new Size(155, 23);
             TodateTime.TabIndex = 7;
             // 
             // Lbl
             // 
             Lbl.AutoSize = true;
-            Lbl.Location = new Point(88, 41);
+            Lbl.Location = new Point(40, 41);
             Lbl.Name = "Lbl";
             Lbl.Size = new Size(35, 15);
             Lbl.TabIndex = 8;
@@ -130,7 +130,7 @@
             // LblTo
             // 
             LblTo.AutoSize = true;
-            LblTo.Location = new Point(396, 41);
+            LblTo.Location = new Point(276, 41);
             LblTo.Name = "LblTo";
             LblTo.Size = new Size(21, 15);
             LblTo.TabIndex = 9;
@@ -138,7 +138,7 @@
             // 
             // btnSearchDirectoryPath
             // 
-            btnSearchDirectoryPath.Location = new Point(567, 161);
+            btnSearchDirectoryPath.Location = new Point(433, 172);
             btnSearchDirectoryPath.Name = "btnSearchDirectoryPath";
             btnSearchDirectoryPath.Size = new Size(174, 23);
             btnSearchDirectoryPath.TabIndex = 10;
@@ -148,7 +148,7 @@
             // 
             // btnDestinationPath
             // 
-            btnDestinationPath.Location = new Point(567, 247);
+            btnDestinationPath.Location = new Point(433, 240);
             btnDestinationPath.Name = "btnDestinationPath";
             btnDestinationPath.Size = new Size(174, 23);
             btnDestinationPath.TabIndex = 11;
@@ -158,9 +158,10 @@
             // 
             // dataGridView1
             // 
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { FileName, Status });
-            dataGridView1.Location = new Point(240, 314);
+            dataGridView1.Location = new Point(99, 314);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowTemplate.Height = 25;
             dataGridView1.Size = new Size(501, 251);
@@ -176,11 +177,48 @@
             Status.HeaderText = "Status";
             Status.Name = "Status";
             // 
-            // Form1
+            // txtSourcePath
+            // 
+            txtSourcePath.Enabled = false;
+            txtSourcePath.Location = new Point(216, 105);
+            txtSourcePath.Multiline = true;
+            txtSourcePath.Name = "txtSourcePath";
+            txtSourcePath.PlaceholderText = "Search Source Path";
+            txtSourcePath.ReadOnly = true;
+            txtSourcePath.RightToLeft = RightToLeft.No;
+            txtSourcePath.Size = new Size(193, 30);
+            txtSourcePath.TabIndex = 13;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(57, 108);
+            label1.Name = "label1";
+            label1.Padding = new Padding(3);
+            label1.Size = new Size(121, 21);
+            label1.TabIndex = 14;
+            label1.Text = "Search Source Path";
+            // 
+            // btnGo
+            // 
+            btnGo.Location = new Point(517, 37);
+            btnGo.Name = "btnGo";
+            btnGo.Size = new Size(90, 23);
+            btnGo.TabIndex = 15;
+            btnGo.Text = "Serach Files";
+            btnGo.TextAlign = ContentAlignment.TopLeft;
+            btnGo.UseVisualStyleBackColor = true;
+            btnGo.Click += btnGo_Click;
+            // 
+            // FileSearch
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(991, 592);
+            ClientSize = new Size(666, 581);
+            Controls.Add(btnGo);
+            Controls.Add(label1);
+            Controls.Add(txtSourcePath);
             Controls.Add(dataGridView1);
             Controls.Add(btnDestinationPath);
             Controls.Add(btnSearchDirectoryPath);
@@ -192,10 +230,9 @@
             Controls.Add(LblSearchDirectoryPath);
             Controls.Add(TxtDestinationPath);
             Controls.Add(TxtSearchDirectoryPath);
-            Controls.Add(LblSourcePath);
-            Controls.Add(btnupload);
-            Name = "Form1";
-            Text = "Form1";
+            Controls.Add(btnSourceFile);
+            Name = "FileSearch";
+            Text = "FileSearch";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -203,8 +240,7 @@
 
         #endregion
 
-        private Button btnupload;
-        private Label LblSourcePath;
+        private Button btnSourceFile;
         private TextBox TxtSearchDirectoryPath;
         private TextBox TxtDestinationPath;
         private Label LblSearchDirectoryPath;
@@ -218,5 +254,8 @@
         private DataGridView dataGridView1;
         private DataGridViewTextBoxColumn FileName;
         private DataGridViewTextBoxColumn Status;
+        private TextBox txtSourcePath;
+        private Label label1;
+        private Button btnGo;
     }
 }

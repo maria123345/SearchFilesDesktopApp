@@ -1,0 +1,11 @@
+C:\Users\maria.ghafar\source\repos\crudApplication\crudApplication\bin\Debug\netcoreapp2.0\crudApplication.deps.json
+C:\Users\maria.ghafar\source\repos\crudApplication\crudApplication\bin\Debug\netcoreapp2.0\crudApplication.runtimeconfig.json
+C:\Users\maria.ghafar\source\repos\crudApplication\crudApplication\bin\Debug\netcoreapp2.0\crudApplication.runtimeconfig.dev.json
+C:\Users\maria.ghafar\source\repos\crudApplication\crudApplication\bin\Debug\netcoreapp2.0\crudApplication.dll
+C:\Users\maria.ghafar\source\repos\crudApplication\crudApplication\bin\Debug\netcoreapp2.0\crudApplication.pdb
+C:\Users\maria.ghafar\source\repos\crudApplication\crudApplication\obj\Debug\netcoreapp2.0\crudApplication.csprojAssemblyReference.cache
+C:\Users\maria.ghafar\source\repos\crudApplication\crudApplication\obj\Debug\netcoreapp2.0\crudApplication.csproj.CoreCompileInputs.cache
+C:\Users\maria.ghafar\source\repos\crudApplication\crudApplication\obj\Debug\netcoreapp2.0\crudApplication.AssemblyInfoInputs.cache
+C:\Users\maria.ghafar\source\repos\crudApplication\crudApplication\obj\Debug\netcoreapp2.0\crudApplication.AssemblyInfo.cs
+C:\Users\maria.ghafar\source\repos\crudApplication\crudApplication\obj\Debug\netcoreapp2.0\crudApplication.dll
+C:\Users\maria.ghafar\source\repos\crudApplication\crudApplication\obj\Debug\netcoreapp2.0\crudApplication.pdb
