@@ -40,8 +40,6 @@
             btnSearchDirectoryPath = new Button();
             btnDestinationPath = new Button();
             dataGridView1 = new DataGridView();
-            FileName = new DataGridViewTextBoxColumn();
-            Status = new DataGridViewTextBoxColumn();
             txtSourcePath = new TextBox();
             label1 = new Label();
             btnGo = new Button();
@@ -158,24 +156,17 @@
             // 
             // dataGridView1
             // 
+            dataGridView1.AllowUserToOrderColumns = true;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { FileName, Status });
+            dataGridView1.GridColor = Color.FromArgb(192, 255, 255);
             dataGridView1.Location = new Point(99, 314);
             dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
             dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(501, 251);
+            dataGridView1.Size = new Size(508, 186);
             dataGridView1.TabIndex = 12;
-            // 
-            // FileName
-            // 
-            FileName.HeaderText = "FileName";
-            FileName.Name = "FileName";
-            // 
-            // Status
-            // 
-            Status.HeaderText = "Status";
-            Status.Name = "Status";
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // txtSourcePath
             // 
@@ -252,8 +243,6 @@
         private Button btnSearchDirectoryPath;
         private Button btnDestinationPath;
         private DataGridView dataGridView1;
-        private DataGridViewTextBoxColumn FileName;
-        private DataGridViewTextBoxColumn Status;
         private TextBox txtSourcePath;
         private Label label1;
         private Button btnGo;
