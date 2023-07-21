@@ -2,6 +2,7 @@ using System.Data;
 using System.IO;
 using System.Reflection;
 using System.Text;
+using NLog;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -9,6 +10,8 @@ namespace SearchMCIDApp
 {
     public partial class FileSearch : Form
     {
+        private static readonly Logger logger = NLog.LogManager.GetLogger("event");
+        private static readonly Logger exLogger = NLog.LogManager.GetLogger("exception");
         string searchDirectoryPath = "";
         string TextDestinationPath = "";
         DateTime fromDate = new DateTime(2023, 1, 1); // Replace with your desired from date
@@ -16,10 +19,12 @@ namespace SearchMCIDApp
         OpenFileDialog openFileDialog;
         FileInfo fileInfo;
         DateTime fileDate;
+        StreamReader reader;
 
         List<string> FileNames = new List<string>();
         public FileSearch()
         {
+           
             InitializeComponent();
             //this.dataGridView1 = new System.Windows.Forms.DataGridView();
 
@@ -43,6 +48,7 @@ namespace SearchMCIDApp
             {
                 fromDate = FromdateTime.Value;
                 toDate = TodateTime.Value;
+                logger.Info("user upload file");
                 openFileDialog = new OpenFileDialog
 
                 {
@@ -121,137 +127,173 @@ namespace SearchMCIDApp
 
         private void btnGo_Click(object sender, EventArgs e)
         {
-            DataTable dataTable = new DataTable();
-            dataTable.Columns.Add("FileName", typeof(string));
-            dataTable.Columns.Add("Status", typeof(string));
-            try
+            bool isValidInput = true;
+            string ErrorText = "";
+            if(string.IsNullOrEmpty(txtSourcePath.Text))
             {
-                if (openFileDialog != null)
+                isValidInput = false;
+                ErrorText += "Source file path is null.";
+            }
+            if(string.IsNullOrEmpty(TxtDestinationPath.Text))
+            {
+                isValidInput = false;
+                ErrorText += "\nDestination file path is null.";
+            }
+            if(string.IsNullOrEmpty(TxtSearchDirectoryPath.Text))
+            {
+                isValidInput = false;
+                ErrorText += "\nSearch Directory file path is null";
+            }
+            if(FromdateTime.Value > TodateTime.Value)
+            {
+                isValidInput = false;
+                ErrorText += "\n From Date Must be less then equal to to date.";
+            }
+            if(isValidInput)
+            {
+                DataTable dataTable = new DataTable();
+
+                dataTable.Columns.Add("MCID", typeof(string));
+                dataTable.Columns.Add("FileName", typeof(string));
+                dataTable.Columns.Add("Status", typeof(string));
+                try
                 {
-                    using (StreamReader reader = new StreamReader(openFileDialog.FileName))
+                    if (openFileDialog != null)
                     {
-                        string line;
-                        while ((line = reader.ReadLine()) != null)
+                        using (reader = new StreamReader(openFileDialog.FileName))
                         {
-                            searchDirectoryPath = TxtSearchDirectoryPath.Text;
-                            //DateTime fileDate = searchDirectoryPath.LastWriteTime;
-
-
-                            if (Directory.Exists(searchDirectoryPath))
+                            string line;
+                            while ((line = reader.ReadLine()) != null)
                             {
-                                var files = Directory.GetFiles(searchDirectoryPath);
-                                foreach (string file in files)
+                                searchDirectoryPath = TxtSearchDirectoryPath.Text;
+                                //DateTime fileDate = searchDirectoryPath.LastWriteTime;
+
+
+                                if (Directory.Exists(searchDirectoryPath))
                                 {
-                                    fileInfo = new FileInfo(file);
-
-                                    if (fileInfo.LastWriteTime >= fromDate && fileInfo.LastWriteTime <= toDate)
+                                    var files = Directory.GetFiles(searchDirectoryPath);
+                                    foreach (string file in files)
                                     {
+                                        fileInfo = new FileInfo(file);
 
-                                        string data = "";
-                                        int lineNumber = 1;
-                                        StreamReader reader1 = new StreamReader(file);
-                                        while ((data = reader1.ReadLine()) != null && lineNumber <= 2)
+                                        if (fileInfo.LastWriteTime >= fromDate && fileInfo.LastWriteTime <= toDate)
                                         {
 
-                                            if (data.Contains(line))
+                                            string data = "";
+                                            int lineNumber = 1;
+                                            StreamReader reader1 = new StreamReader(file);
+                                            while ((data = reader1.ReadLine()) != null && lineNumber <= 2)
                                             {
 
+                                                if (data.Contains(line))
+                                                {
 
-                                                FileNames.Add(file);
 
+                                                    FileNames.Add(file);
+
+                                                }
+                                                lineNumber++;
                                             }
-                                            lineNumber++;
                                         }
+
+
                                     }
-
-
                                 }
                             }
                         }
-                    }
 
-                    if (FileNames.Count > 0)
-                    {
-                        //  dataGridView1 = new DataGridView();
-                        FileNames = FileNames.Distinct().ToList();
-                        string fileNames = "";
-                        string fileNames2 = "";
-                        foreach (string file in FileNames)
+                        if (FileNames.Count > 0)
                         {
-
-                            fileNames2 += Path.GetFileName(file);
-                            fileNames += Path.GetFileName(file);
-                            fileNames += "\n";
-
-
-                            DataRow row = dataTable.NewRow();
-                            row["FileName"] = fileNames2;
-                            row["Status"] = "Exist";
-                            dataTable.Rows.Add(row);
-                            fileNames2 = "";
-
-                        }
-                        dataGridView1.DataSource = dataTable;
-
-                        //MessageBox.Show(fileNames);
-
-                        string NewDesignationPath = TxtDestinationPath.Text;
-                        string FileName = DateTime.Now.ToString("ddMMyyyyHHmmssfff");
-
-
-                        string filePath = Path.Combine(NewDesignationPath, FileName);
-                        string NewFileName = "";
-
-                        if (!File.Exists(filePath))
-                        {
-                            NewFileName = FileName;
-                        }
-                        else
-                        {
-                            NewFileName = filePath + "_New";
-                        }
-                        using (FileStream writer = File.Create(Path.Combine(NewDesignationPath, NewFileName)))
-                        {
-                            writer.Write(new UTF8Encoding(true).GetBytes(fileNames), 0, fileNames.Length);
-
-                            // Get all matching files in the source directory
-                            //string[] matchingFiles = Directory.GetFiles(searchDirectoryPath);
-
-                            // Copy each matching file to the destination directory
+                            //  dataGridView1 = new DataGridView();
+                            FileNames = FileNames.Distinct().ToList();
+                            string fileNames = "";
+                            string fileNames2 = "";
                             foreach (string file in FileNames)
                             {
 
-                                string subfilepath = Path.Combine(NewDesignationPath, Path.GetFileName(file));
-                                if (!File.Exists(subfilepath))
-                                {
-                                    File.Copy(file, Path.Combine(NewDesignationPath, Path.GetFileName(file)));
-                                    var FileContent = new UTF8Encoding(true).GetBytes(File.ReadAllText(file));
-                                }
-                                else
-                                {
-                                    // File.Copy(file, Path.Combine(NewDesignationPath, Path.GetFileName(file)));
-                                    // var FileContent = new UTF8Encoding(true).GetBytes(File.ReadAllText(file));
-                                }
-                                // Write the file path to the text file
+                                fileNames2 += Path.GetFileName(file);
+                                fileNames += Path.GetFileName(file);
+                                fileNames += "\n";
+
+
+                                DataRow row = dataTable.NewRow();
+                                row["MCID"] = "fd";
+                                row["FileName"] = fileNames2;
+                                row["Status"] = "Yes";
+
+                                dataTable.Rows.Add(row);
+                                fileNames2 = "";
+
                             }
+                            dataGridView1.DataSource = dataTable;
 
-                            // }
+                            //MessageBox.Show(fileNames);
+
+                            string NewDesignationPath = TxtDestinationPath.Text;
+                            string FileName = DateTime.Now.ToString("ddMMyyyyHHmmssfff");
+
+
+                            string filePath = Path.Combine(NewDesignationPath, FileName);
+                            string NewFileName = "";
+
+                            if (!File.Exists(filePath))
+                            {
+                                NewFileName = FileName;
+                            }
+                            else
+                            {
+                                NewFileName = filePath + "_New";
+                            }
+                            using (FileStream writer = File.Create(Path.Combine(NewDesignationPath, NewFileName)))
+                            {
+                                writer.Write(new UTF8Encoding(true).GetBytes(fileNames), 0, fileNames.Length);
+
+                                // Get all matching files in the source directory
+                                //string[] matchingFiles = Directory.GetFiles(searchDirectoryPath);
+
+                                // Copy each matching file to the destination directory
+                                foreach (string file in FileNames)
+                                {
+
+                                    string subfilepath = Path.Combine(NewDesignationPath, Path.GetFileName(file));
+                                    if (!File.Exists(subfilepath))
+                                    {
+                                        File.Copy(file, Path.Combine(NewDesignationPath, Path.GetFileName(file)));
+                                        var FileContent = new UTF8Encoding(true).GetBytes(File.ReadAllText(file));
+                                    }
+                                    else
+                                    {
+                                        // File.Copy(file, Path.Combine(NewDesignationPath, Path.GetFileName(file)));
+                                        // var FileContent = new UTF8Encoding(true).GetBytes(File.ReadAllText(file));
+                                    }
+                                    // Write the file path to the text file
+                                }
+
+                                // }
+                            }
                         }
+                        Console.WriteLine("Matching files have been copied.");
+                        Console.ReadLine();
                     }
-                    Console.WriteLine("Matching files have been copied.");
-                    Console.ReadLine();
+                    else
+                    {
+                        MessageBox.Show("All path required");
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("All path required");
+
+                    MessageBox.Show(ex.Message);
+                    throw;
                 }
             }
-            catch (Exception ex)
+            else
             {
-
-                MessageBox.Show(ex.Message);
-                throw;
+                MessageBox.Show(ErrorText,"Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            
+              
+          
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

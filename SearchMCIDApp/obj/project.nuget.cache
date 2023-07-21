@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "PXzfmZh1qcjjaRRrOJ+kZsLocB3F3/yqaqsvCF361EEWUA3LB3oHz6H57NhLM7XkHKLbK6zra1LBs8xKnbCsQg==",
+  "dgSpecHash": "3RUvxNacm85fTtrobIMePZP5APKN+1ZHKvnFtXnaupbuI5l7XVVBRkUPsK/FO0U4Cg4Kru1dfAdmD5mqZaNQiA==",
   "success": true,
   "projectFilePath": "C:\\Users\\maria.ghafar\\source\\repos\\maria123345\\SearchFilesDesktopApp\\SearchMCIDApp\\SearchMCIDApp.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\maria.ghafar\\.nuget\\packages\\nlog\\5.2.2\\nlog.5.2.2.nupkg.sha512",
+    "C:\\Users\\maria.ghafar\\.nuget\\packages\\nlog.config\\4.7.15\\nlog.config.4.7.15.nupkg.sha512",
+    "C:\\Users\\maria.ghafar\\.nuget\\packages\\nlog.schema\\4.7.15\\nlog.schema.4.7.15.nupkg.sha512"
+  ],
   "logs": []
 }

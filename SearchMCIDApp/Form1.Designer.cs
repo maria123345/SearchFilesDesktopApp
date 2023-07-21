@@ -48,9 +48,9 @@
             // 
             // btnSourceFile
             // 
-            btnSourceFile.Location = new Point(433, 105);
+            btnSourceFile.Location = new Point(464, 76);
             btnSourceFile.Name = "btnSourceFile";
-            btnSourceFile.Size = new Size(174, 23);
+            btnSourceFile.Size = new Size(143, 23);
             btnSourceFile.TabIndex = 0;
             btnSourceFile.Text = "Source File";
             btnSourceFile.UseVisualStyleBackColor = true;
@@ -59,7 +59,7 @@
             // TxtSearchDirectoryPath
             // 
             TxtSearchDirectoryPath.Enabled = false;
-            TxtSearchDirectoryPath.Location = new Point(215, 167);
+            TxtSearchDirectoryPath.Location = new Point(215, 113);
             TxtSearchDirectoryPath.Multiline = true;
             TxtSearchDirectoryPath.Name = "TxtSearchDirectoryPath";
             TxtSearchDirectoryPath.PlaceholderText = "Search Directory Path";
@@ -71,12 +71,12 @@
             // TxtDestinationPath
             // 
             TxtDestinationPath.Enabled = false;
-            TxtDestinationPath.Location = new Point(212, 237);
+            TxtDestinationPath.Location = new Point(215, 149);
             TxtDestinationPath.Multiline = true;
             TxtDestinationPath.Name = "TxtDestinationPath";
             TxtDestinationPath.PlaceholderText = "Search Diestination Path";
             TxtDestinationPath.ReadOnly = true;
-            TxtDestinationPath.Size = new Size(197, 31);
+            TxtDestinationPath.Size = new Size(193, 31);
             TxtDestinationPath.TabIndex = 3;
             TxtDestinationPath.WordWrap = false;
             // 
@@ -84,7 +84,7 @@
             // 
             LblSearchDirectoryPath.AutoSize = true;
             LblSearchDirectoryPath.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            LblSearchDirectoryPath.Location = new Point(57, 170);
+            LblSearchDirectoryPath.Location = new Point(57, 116);
             LblSearchDirectoryPath.Name = "LblSearchDirectoryPath";
             LblSearchDirectoryPath.Padding = new Padding(3);
             LblSearchDirectoryPath.Size = new Size(135, 21);
@@ -95,7 +95,7 @@
             // 
             LblSearchDestinationPath.AutoSize = true;
             LblSearchDestinationPath.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            LblSearchDestinationPath.Location = new Point(57, 240);
+            LblSearchDestinationPath.Location = new Point(57, 152);
             LblSearchDestinationPath.Name = "LblSearchDestinationPath";
             LblSearchDestinationPath.Padding = new Padding(3);
             LblSearchDestinationPath.Size = new Size(149, 21);
@@ -104,41 +104,43 @@
             // 
             // FromdateTime
             // 
-            FromdateTime.Location = new Point(106, 35);
+            FromdateTime.Location = new Point(215, 41);
             FromdateTime.Name = "FromdateTime";
-            FromdateTime.Size = new Size(139, 23);
+            FromdateTime.Size = new Size(128, 23);
             FromdateTime.TabIndex = 6;
             // 
             // TodateTime
             // 
-            TodateTime.Location = new Point(333, 35);
+            TodateTime.Location = new Point(464, 41);
             TodateTime.Name = "TodateTime";
-            TodateTime.Size = new Size(155, 23);
+            TodateTime.Size = new Size(146, 23);
             TodateTime.TabIndex = 7;
             // 
             // Lbl
             // 
             Lbl.AutoSize = true;
-            Lbl.Location = new Point(40, 41);
+            Lbl.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            Lbl.Location = new Point(61, 45);
             Lbl.Name = "Lbl";
-            Lbl.Size = new Size(35, 15);
+            Lbl.Size = new Size(72, 15);
             Lbl.TabIndex = 8;
-            Lbl.Text = "From";
+            Lbl.Text = "From Date: ";
             // 
             // LblTo
             // 
             LblTo.AutoSize = true;
-            LblTo.Location = new Point(276, 41);
+            LblTo.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            LblTo.Location = new Point(362, 45);
             LblTo.Name = "LblTo";
-            LblTo.Size = new Size(21, 15);
+            LblTo.Size = new Size(56, 15);
             LblTo.TabIndex = 9;
-            LblTo.Text = "TO";
+            LblTo.Text = "To Date: ";
             // 
             // btnSearchDirectoryPath
             // 
-            btnSearchDirectoryPath.Location = new Point(433, 172);
+            btnSearchDirectoryPath.Location = new Point(464, 114);
             btnSearchDirectoryPath.Name = "btnSearchDirectoryPath";
-            btnSearchDirectoryPath.Size = new Size(174, 23);
+            btnSearchDirectoryPath.Size = new Size(143, 23);
             btnSearchDirectoryPath.TabIndex = 10;
             btnSearchDirectoryPath.Text = "Search Directory Path";
             btnSearchDirectoryPath.UseVisualStyleBackColor = true;
@@ -146,9 +148,9 @@
             // 
             // btnDestinationPath
             // 
-            btnDestinationPath.Location = new Point(433, 240);
+            btnDestinationPath.Location = new Point(464, 152);
             btnDestinationPath.Name = "btnDestinationPath";
-            btnDestinationPath.Size = new Size(174, 23);
+            btnDestinationPath.Size = new Size(143, 23);
             btnDestinationPath.TabIndex = 11;
             btnDestinationPath.Text = "Destination Path";
             btnDestinationPath.UseVisualStyleBackColor = true;
@@ -160,18 +162,18 @@
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.GridColor = Color.FromArgb(192, 255, 255);
-            dataGridView1.Location = new Point(99, 314);
+            dataGridView1.Location = new Point(67, 245);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(508, 186);
+            dataGridView1.Size = new Size(540, 186);
             dataGridView1.TabIndex = 12;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // txtSourcePath
             // 
             txtSourcePath.Enabled = false;
-            txtSourcePath.Location = new Point(216, 105);
+            txtSourcePath.Location = new Point(215, 77);
             txtSourcePath.Multiline = true;
             txtSourcePath.Name = "txtSourcePath";
             txtSourcePath.PlaceholderText = "Search Source Path";
@@ -184,7 +186,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(57, 108);
+            label1.Location = new Point(57, 80);
             label1.Name = "label1";
             label1.Padding = new Padding(3);
             label1.Size = new Size(121, 21);
@@ -193,12 +195,12 @@
             // 
             // btnGo
             // 
-            btnGo.Location = new Point(517, 37);
+            btnGo.Location = new Point(285, 207);
             btnGo.Name = "btnGo";
-            btnGo.Size = new Size(90, 23);
+            btnGo.Size = new Size(143, 23);
             btnGo.TabIndex = 15;
             btnGo.Text = "Serach Files";
-            btnGo.TextAlign = ContentAlignment.TopLeft;
+            btnGo.TextAlign = ContentAlignment.TopCenter;
             btnGo.UseVisualStyleBackColor = true;
             btnGo.Click += btnGo_Click;
             // 
@@ -206,7 +208,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(666, 581);
+            ClientSize = new Size(693, 459);
             Controls.Add(btnGo);
             Controls.Add(label1);
             Controls.Add(txtSourcePath);
