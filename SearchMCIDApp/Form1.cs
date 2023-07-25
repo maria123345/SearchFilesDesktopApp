@@ -5,6 +5,7 @@ using System.Text;
 using NLog;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Diagnostics.Metrics;
 
 namespace SearchMCIDApp
 {
@@ -24,7 +25,7 @@ namespace SearchMCIDApp
         List<string> FileNames = new List<string>();
         public FileSearch()
         {
-           
+
             InitializeComponent();
             //this.dataGridView1 = new System.Windows.Forms.DataGridView();
 
@@ -127,37 +128,47 @@ namespace SearchMCIDApp
 
         private void btnGo_Click(object sender, EventArgs e)
         {
+            DataTable dataTable = new DataTable();
+
+            dataTable.Columns.Add("MCID", typeof(string));
+            dataTable.Columns.Add("FileName", typeof(string));
+            dataTable.Columns.Add("Status", typeof(string));
+            dataTable.Clear();
+            dataGridView1.DataSource = null;
+            dataGridView1.Refresh();
             bool isValidInput = true;
             string ErrorText = "";
-            if(string.IsNullOrEmpty(txtSourcePath.Text))
+            if (string.IsNullOrEmpty(txtSourcePath.Text))
             {
                 isValidInput = false;
                 ErrorText += "Source file path is null.";
+                logger.Error(ErrorText);
             }
-            if(string.IsNullOrEmpty(TxtDestinationPath.Text))
+            if (string.IsNullOrEmpty(TxtDestinationPath.Text))
             {
                 isValidInput = false;
                 ErrorText += "\nDestination file path is null.";
             }
-            if(string.IsNullOrEmpty(TxtSearchDirectoryPath.Text))
+            if (string.IsNullOrEmpty(TxtSearchDirectoryPath.Text))
             {
                 isValidInput = false;
                 ErrorText += "\nSearch Directory file path is null";
             }
-            if(FromdateTime.Value > TodateTime.Value)
+            if (FromdateTime.Value > TodateTime.Value)
             {
                 isValidInput = false;
                 ErrorText += "\n From Date Must be less then equal to to date.";
             }
-            if(isValidInput)
+            if (isValidInput)
             {
-                DataTable dataTable = new DataTable();
 
-                dataTable.Columns.Add("MCID", typeof(string));
-                dataTable.Columns.Add("FileName", typeof(string));
-                dataTable.Columns.Add("Status", typeof(string));
                 try
                 {
+                    logger.Info("-------------Search Parameter ---------------");
+                    logger.Info($"From Date : {FromdateTime} ");
+                    logger.Info($"To Date : {TodateTime} ");
+                    logger.Info($" ");
+                    logger.Info("-------------Search Parameter ---------------");
                     if (openFileDialog != null)
                     {
                         using (reader = new StreamReader(openFileDialog.FileName))
@@ -172,6 +183,7 @@ namespace SearchMCIDApp
                                 if (Directory.Exists(searchDirectoryPath))
                                 {
                                     var files = Directory.GetFiles(searchDirectoryPath);
+                                    logger.Info($"files count in search directory : {files.Length}");
                                     foreach (string file in files)
                                     {
                                         fileInfo = new FileInfo(file);
@@ -185,10 +197,10 @@ namespace SearchMCIDApp
                                             while ((data = reader1.ReadLine()) != null && lineNumber <= 2)
                                             {
 
-                                                if (data.Contains(line))
+                                                if (data.Contains(line) && !string.IsNullOrWhiteSpace(line))
                                                 {
 
-
+                                                    logger.Info($"File Matched : {file} ");
                                                     FileNames.Add(file);
 
                                                 }
@@ -199,11 +211,16 @@ namespace SearchMCIDApp
 
                                     }
                                 }
+                                else
+                                {
+                                    logger.Info("Search directory path does not exists.");
+                                }
                             }
                         }
 
                         if (FileNames.Count > 0)
                         {
+                            logger.Info($"Total matched : {FileNames.Count} files .");
                             //  dataGridView1 = new DataGridView();
                             FileNames = FileNames.Distinct().ToList();
                             string fileNames = "";
@@ -263,17 +280,23 @@ namespace SearchMCIDApp
                                     }
                                     else
                                     {
+
                                         // File.Copy(file, Path.Combine(NewDesignationPath, Path.GetFileName(file)));
                                         // var FileContent = new UTF8Encoding(true).GetBytes(File.ReadAllText(file));
                                     }
                                     // Write the file path to the text file
                                 }
-
+                                logger.Info("Matching files have been copied.");
                                 // }
                             }
                         }
-                        Console.WriteLine("Matching files have been copied.");
-                        Console.ReadLine();
+
+                        else
+                        {
+                            logger.Info("No match files");
+                        }
+
+
                     }
                     else
                     {
@@ -289,16 +312,30 @@ namespace SearchMCIDApp
             }
             else
             {
-                MessageBox.Show(ErrorText,"Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ErrorText, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
-              
-          
+
+
+
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
 
+        private void btnrefresh_Click(object sender, EventArgs e)
+        {
+           
+            DataTable dataTable = new DataTable();
+
+            dataTable.Columns.Add("MCID", typeof(string));
+            dataTable.Columns.Add("FileName", typeof(string));
+            dataTable.Columns.Add("Status", typeof(string));
+            DataRow row = dataTable.NewRow();
+            row["MCID"] = "fd";
+            row["FileName"] = "";
+            row["Status"] = "Yes";
+            dataTable.Clear();
+            dataGridView1.DataSource = null;
+            dataGridView1.Refresh();
+            
         }
     }
 }

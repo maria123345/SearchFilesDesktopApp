@@ -43,6 +43,7 @@
             txtSourcePath = new TextBox();
             label1 = new Label();
             btnGo = new Button();
+            btnrefresh = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -168,7 +169,7 @@
             dataGridView1.RowTemplate.Height = 25;
             dataGridView1.Size = new Size(540, 186);
             dataGridView1.TabIndex = 12;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+         
             // 
             // txtSourcePath
             // 
@@ -195,7 +196,7 @@
             // 
             // btnGo
             // 
-            btnGo.Location = new Point(285, 207);
+            btnGo.Location = new Point(144, 203);
             btnGo.Name = "btnGo";
             btnGo.Size = new Size(143, 23);
             btnGo.TabIndex = 15;
@@ -204,11 +205,22 @@
             btnGo.UseVisualStyleBackColor = true;
             btnGo.Click += btnGo_Click;
             // 
+            // btnrefresh
+            // 
+            btnrefresh.Location = new Point(362, 203);
+            btnrefresh.Name = "btnrefresh";
+            btnrefresh.Size = new Size(143, 23);
+            btnrefresh.TabIndex = 16;
+            btnrefresh.Text = "Refresh";
+            btnrefresh.UseVisualStyleBackColor = true;
+            btnrefresh.Click += btnrefresh_Click;
+            // 
             // FileSearch
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(693, 459);
+            Controls.Add(btnrefresh);
             Controls.Add(btnGo);
             Controls.Add(label1);
             Controls.Add(txtSourcePath);
@@ -248,5 +260,6 @@
         private TextBox txtSourcePath;
         private Label label1;
         private Button btnGo;
+        private Button btnrefresh;
     }
 }
