@@ -1,0 +1,15 @@
+C:\Users\maria.ghafar\source\repos\maria123345\SearchFilesDesktopApp\SearchMCIDApps\bin\Debug\NLog.config
+C:\Users\maria.ghafar\source\repos\maria123345\SearchFilesDesktopApp\SearchMCIDApps\bin\Debug\SearchMCIDApps.exe.config
+C:\Users\maria.ghafar\source\repos\maria123345\SearchFilesDesktopApp\SearchMCIDApps\bin\Debug\SearchMCIDApps.exe
+C:\Users\maria.ghafar\source\repos\maria123345\SearchFilesDesktopApp\SearchMCIDApps\bin\Debug\SearchMCIDApps.pdb
+C:\Users\maria.ghafar\source\repos\maria123345\SearchFilesDesktopApp\SearchMCIDApps\bin\Debug\NLog.dll
+C:\Users\maria.ghafar\source\repos\maria123345\SearchFilesDesktopApp\SearchMCIDApps\bin\Debug\NLog.xml
+C:\Users\maria.ghafar\source\repos\maria123345\SearchFilesDesktopApp\SearchMCIDApps\obj\Debug\SearchMCIDApps.csproj.AssemblyReference.cache
+C:\Users\maria.ghafar\source\repos\maria123345\SearchFilesDesktopApp\SearchMCIDApps\obj\Debug\SearchMCIDApps.csproj.SuggestedBindingRedirects.cache
+C:\Users\maria.ghafar\source\repos\maria123345\SearchFilesDesktopApp\SearchMCIDApps\obj\Debug\SearchMCIDApps.Properties.Resources.resources
+C:\Users\maria.ghafar\source\repos\maria123345\SearchFilesDesktopApp\SearchMCIDApps\obj\Debug\SearchMCIDApps.SearchFile.resources
+C:\Users\maria.ghafar\source\repos\maria123345\SearchFilesDesktopApp\SearchMCIDApps\obj\Debug\SearchMCIDApps.csproj.GenerateResource.cache
+C:\Users\maria.ghafar\source\repos\maria123345\SearchFilesDesktopApp\SearchMCIDApps\obj\Debug\SearchMCIDApps.csproj.CoreCompileInputs.cache
+C:\Users\maria.ghafar\source\repos\maria123345\SearchFilesDesktopApp\SearchMCIDApps\obj\Debug\SearchMCIDApps.csproj.CopyComplete
+C:\Users\maria.ghafar\source\repos\maria123345\SearchFilesDesktopApp\SearchMCIDApps\obj\Debug\SearchMCIDApps.exe
+C:\Users\maria.ghafar\source\repos\maria123345\SearchFilesDesktopApp\SearchMCIDApps\obj\Debug\SearchMCIDApps.pdb

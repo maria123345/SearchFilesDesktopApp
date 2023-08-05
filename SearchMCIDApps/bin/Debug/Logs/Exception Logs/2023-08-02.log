@@ -1,0 +1,9 @@
+02-08-2023 09:27:54 | ERROR 
+------------------- Exception Message: -------------------  
+System.ArgumentException: This row already belongs to this table.
+   at System.Data.DataTable.InsertRow(DataRow row, Int64 proposedID, Int32 pos, Boolean fireEvent)
+   at System.Data.DataRowCollection.Add(DataRow row)
+   at SearchMCIDApps.SearchFile.btnGo_Click(Object sender, EventArgs e) in C:\Users\maria.ghafar\source\repos\maria123345\SearchFilesDesktopApp\SearchMCIDApps\SearchFile.cs:line 173 System.ArgumentException    at System.Data.DataTable.InsertRow(DataRow row, Int64 proposedID, Int32 pos, Boolean fireEvent)
+   at System.Data.DataRowCollection.Add(DataRow row)
+   at SearchMCIDApps.SearchFile.btnGo_Click(Object sender, EventArgs e) in C:\Users\maria.ghafar\source\repos\maria123345\SearchFilesDesktopApp\SearchMCIDApps\SearchFile.cs:line 173  
+
