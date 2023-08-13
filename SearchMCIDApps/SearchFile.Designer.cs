@@ -186,7 +186,7 @@
             // TodateTime
             // 
             this.TodateTime.Location = new System.Drawing.Point(414, 40);
-            this.TodateTime.MaxDate = new System.DateTime(2023, 7, 27, 0, 0, 0, 0);
+            this.TodateTime.MaxDate = new System.DateTime(2099, 12, 31, 0, 0, 0, 0);
             this.TodateTime.Name = "TodateTime";
             this.TodateTime.Size = new System.Drawing.Size(144, 20);
             this.TodateTime.TabIndex = 12;
@@ -194,6 +194,7 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToOrderColumns = true;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.ControlLight;
