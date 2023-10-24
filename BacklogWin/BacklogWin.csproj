@@ -69,16 +69,22 @@
     <Compile Include="db\db.cs" />
     <Compile Include="db\DBAccess.cs" />
     <Compile Include="db\DBHelpers.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="Backlogdata.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Backlogdata.Designer.cs">
+      <DependentUpon>Backlogdata.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="status1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="status1.Designer.cs">
+      <DependentUpon>status1.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Backlogdata.resx">
+      <DependentUpon>Backlogdata.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
