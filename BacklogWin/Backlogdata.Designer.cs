@@ -40,15 +40,16 @@
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.tolbl = new System.Windows.Forms.Label();
             this.Fromlbl = new System.Windows.Forms.Label();
+            this.btnstatus = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.BacklogdataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // BacklogdataGridView
             // 
             this.BacklogdataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.BacklogdataGridView.Location = new System.Drawing.Point(76, 131);
+            this.BacklogdataGridView.Location = new System.Drawing.Point(39, 98);
             this.BacklogdataGridView.Name = "BacklogdataGridView";
-            this.BacklogdataGridView.Size = new System.Drawing.Size(668, 255);
+            this.BacklogdataGridView.Size = new System.Drawing.Size(1136, 441);
             this.BacklogdataGridView.TabIndex = 4;
             // 
             // MessageTypecomboBox
@@ -77,12 +78,13 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(601, 57);
+            this.btnSearch.Location = new System.Drawing.Point(1074, 47);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(101, 45);
+            this.btnSearch.Size = new System.Drawing.Size(101, 21);
             this.btnSearch.TabIndex = 6;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click_1);
             // 
             // MessageStatusIDlbl
             // 
@@ -113,14 +115,14 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(126, 92);
+            this.dateTimePicker1.Location = new System.Drawing.Point(599, 47);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(176, 20);
             this.dateTimePicker1.TabIndex = 13;
             // 
             // dateTimePicker2
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(365, 92);
+            this.dateTimePicker2.Location = new System.Drawing.Point(852, 48);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(181, 20);
             this.dateTimePicker2.TabIndex = 14;
@@ -128,7 +130,7 @@
             // tolbl
             // 
             this.tolbl.AutoSize = true;
-            this.tolbl.Location = new System.Drawing.Point(98, 98);
+            this.tolbl.Location = new System.Drawing.Point(552, 48);
             this.tolbl.Name = "tolbl";
             this.tolbl.Size = new System.Drawing.Size(22, 13);
             this.tolbl.TabIndex = 15;
@@ -137,17 +139,28 @@
             // Fromlbl
             // 
             this.Fromlbl.AutoSize = true;
-            this.Fromlbl.Location = new System.Drawing.Point(315, 98);
+            this.Fromlbl.Location = new System.Drawing.Point(801, 50);
             this.Fromlbl.Name = "Fromlbl";
             this.Fromlbl.Size = new System.Drawing.Size(30, 13);
             this.Fromlbl.TabIndex = 16;
             this.Fromlbl.Text = "From";
             // 
+            // btnstatus
+            // 
+            this.btnstatus.Location = new System.Drawing.Point(68, 545);
+            this.btnstatus.Name = "btnstatus";
+            this.btnstatus.Size = new System.Drawing.Size(110, 23);
+            this.btnstatus.TabIndex = 17;
+            this.btnstatus.Text = "change Status";
+            this.btnstatus.UseVisualStyleBackColor = true;
+            this.btnstatus.Click += new System.EventHandler(this.btnstatus_Click);
+            // 
             // BacklogForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1330, 646);
+            this.Controls.Add(this.btnstatus);
             this.Controls.Add(this.Fromlbl);
             this.Controls.Add(this.tolbl);
             this.Controls.Add(this.dateTimePicker2);
@@ -181,6 +194,7 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.Label tolbl;
         private System.Windows.Forms.Label Fromlbl;
+        private System.Windows.Forms.Button btnstatus;
     }
 }
 
