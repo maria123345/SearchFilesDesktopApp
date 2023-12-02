@@ -2,14 +2,14 @@ C:\Users\maria.ghafar\source\repos\maria123345\SearchFilesDesktopApp\BacklogWin\
 C:\Users\maria.ghafar\source\repos\maria123345\SearchFilesDesktopApp\BacklogWin\bin\Debug\BacklogWin.exe.config
 C:\Users\maria.ghafar\source\repos\maria123345\SearchFilesDesktopApp\BacklogWin\bin\Debug\BacklogWin.exe
 C:\Users\maria.ghafar\source\repos\maria123345\SearchFilesDesktopApp\BacklogWin\bin\Debug\BacklogWin.pdb
+C:\Users\maria.ghafar\source\repos\maria123345\SearchFilesDesktopApp\BacklogWin\bin\Debug\NLog.dll
+C:\Users\maria.ghafar\source\repos\maria123345\SearchFilesDesktopApp\BacklogWin\bin\Debug\NLog.xml
 C:\Users\maria.ghafar\source\repos\maria123345\SearchFilesDesktopApp\BacklogWin\obj\Debug\BacklogWin.csproj.AssemblyReference.cache
 C:\Users\maria.ghafar\source\repos\maria123345\SearchFilesDesktopApp\BacklogWin\obj\Debug\BacklogWin.csproj.SuggestedBindingRedirects.cache
 C:\Users\maria.ghafar\source\repos\maria123345\SearchFilesDesktopApp\BacklogWin\obj\Debug\BacklogWin.BacklogForm.resources
 C:\Users\maria.ghafar\source\repos\maria123345\SearchFilesDesktopApp\BacklogWin\obj\Debug\BacklogWin.Properties.Resources.resources
 C:\Users\maria.ghafar\source\repos\maria123345\SearchFilesDesktopApp\BacklogWin\obj\Debug\BacklogWin.csproj.GenerateResource.cache
 C:\Users\maria.ghafar\source\repos\maria123345\SearchFilesDesktopApp\BacklogWin\obj\Debug\BacklogWin.csproj.CoreCompileInputs.cache
+C:\Users\maria.ghafar\source\repos\maria123345\SearchFilesDesktopApp\BacklogWin\obj\Debug\BacklogWin.csproj.CopyComplete
 C:\Users\maria.ghafar\source\repos\maria123345\SearchFilesDesktopApp\BacklogWin\obj\Debug\BacklogWin.exe
 C:\Users\maria.ghafar\source\repos\maria123345\SearchFilesDesktopApp\BacklogWin\obj\Debug\BacklogWin.pdb
-C:\Users\maria.ghafar\source\repos\maria123345\SearchFilesDesktopApp\BacklogWin\bin\Debug\NLog.dll
-C:\Users\maria.ghafar\source\repos\maria123345\SearchFilesDesktopApp\BacklogWin\bin\Debug\NLog.xml
-C:\Users\maria.ghafar\source\repos\maria123345\SearchFilesDesktopApp\BacklogWin\obj\Debug\BacklogWin.csproj.CopyComplete

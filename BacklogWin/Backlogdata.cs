@@ -58,43 +58,15 @@ namespace BacklogWin
 
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
-            
-
-
-        }
-
         public void GetMessageType()
         {
             DataTable dt = new DataTable();
             dt.Clear();
-            //dt.Columns.Add("MessageTypeID");
-            //dt.Columns.Add("MessageTypeName");
-            //DataRow _ravi = dt.NewRow();
-            //_ravi["MessageTypeID"] = 1;
-            //_ravi["MessageTypeName"] = "ref";
-            //dt.Rows.Add(_ravi);
-
-            //_ravi = dt.NewRow();
-            //_ravi["MessageTypeID"] = 2;
-            //_ravi["MessageTypeName"] = "oru";
-            //dt.Rows.Add(_ravi);
-
-            //_ravi = dt.NewRow();
-            //_ravi["MessageTypeID"] = 3;
-            //_ravi["MessageTypeName"] = "mail";
-            //dt.Rows.Add(_ravi);
-
-            //_ravi = dt.NewRow();
-            //_ravi["MessageTypeID"] = 4;
-            //_ravi["MessageTypeName"] = "Vx";
-            //dt.Rows.Add(_ravi);
+         
             MessageTypecomboBox.DataSource = dt.DefaultView;
             MessageTypecomboBox.DisplayMember = "MessageTypeName";
             MessageTypecomboBox.BindingContext = this.BindingContext;
-
-            
+                    
 
         }
 
@@ -156,160 +128,85 @@ namespace BacklogWin
 
         private void btnstatus_Click(object sender, EventArgs e)
         {
-            logger.Info("search call started.");
-            int MessageStatus = Convert.ToInt16(MessageStatuscomboBox.Text.ToString());
-            string MessageRequestType = MessageRequestTypecomboBox.Text.ToString();
-            logger.Info(MessageRequestType," type is ");
-            string MessageType = MessageTypecomboBox.Text.ToString();
-            logger.Info(MessageType);
-            string column1Data = GetColumnData("MessageID",null);
-            string column2Data = GetColumnData("MessageControlID",null);
-            string column3Data = GetColumnData("ResponseMessageID", null);
-            DataSet ds=new DataSet();
-            logger.Info(ds);
-
-            BacklogWin.BusinessLogic.BAL bAL = new BacklogWin.BusinessLogic.BAL();
-            DataTable dataTable = new DataTable();
-            logger.Info(dataTable);
-            dataTable.Clear();
-            //its will check the omal ,vx and mail message values  and update the finded message values status in messagelog
-            if (MessageStatus == 1 && (MessageType == "OML" || MessageType == "mail"))
+            try
             {
-                ds = bAL.CheckMessagValuesByMessageIds(MessageStatus, MessageRequestType, MessageType, column1Data, column2Data, "CheckMessageValueByIDs");
-                logger.Info(ds);
+                logger.Info("search call started.");
+                int MessageStatus = Convert.ToInt16(MessageStatuscomboBox.Text.ToString());
+                string MessageRequestType = MessageRequestTypecomboBox.Text.ToString();
+                string MessageType = MessageTypecomboBox.Text.ToString();
+                string column1Data = GetColumnData("MessageID", null);
+                string column2Data = GetColumnData("MessageControlID", null);
+                string column3Data = GetColumnData("ResponseMessageID", null);
+                logger.Debug($"Message status is : {MessageStatus}");
+                logger.Debug($"Message Request Type is : {MessageRequestType}");
+                logger.Debug($"Message Type is : {MessageType}");
+                logger.Debug($"Message ID is : {column1Data}");
+                logger.Debug($"Message ID is : {column2Data}");
+                logger.Debug($"Message ID is : {column3Data}");
+                DataSet ds = new DataSet();
 
 
-                if (ds.Tables[0].Rows.Count > 0)
+                BacklogWin.BusinessLogic.BAL bAL = new BacklogWin.BusinessLogic.BAL();
+                DataTable dataTable = new DataTable();
+
+                dataTable.Clear();
+                //its will check the omal ,vx and mail message values  and update the finded message values status in messagelog
+                if (MessageStatus == 1 && (MessageType == "OML" || MessageType == "mail"))
                 {
-                    string MessageValues = "";
-                    string MessageControlIDs = "";
-                    dataTable = ds.Tables[0];
-                    foreach (DataRow row in dataTable.Rows)
-                    {
-                        MessageValues += row["MessageID"].ToString() + ",";
-                        MessageControlIDs += row["MessageControlID"].ToString() + ",";
+                    ds = bAL.CheckMessagValuesByMessageIds(MessageStatus, MessageRequestType, MessageType, column1Data, column2Data, "CheckMessageValueByIDs");
 
-                    }
-                    //its updation logicc
-                    DataTable dataTable2 = new DataTable();
-                    logger.Info(dataTable2);
-                    dataTable2.Clear();
-                    MessageValues = GetCommaString(MessageValues);
-                    MessageControlIDs = GetCommaString(MessageControlIDs);
-                  //its will be update those whoes messsage value exist
-                    bAL.CheckMessagValuesByMessageIds(MessageStatus, MessageRequestType, MessageType,MessageValues, MessageControlIDs, "UpdateCheckMessageValuesAndUpdatemailvxOML");
-                    MessageBox.Show("These Message Control IDs  Status updated: " + MessageControlIDs);
-                    return;
-                }
-                //its for thoese whoese message value not exist
-                if (ds.Tables[1].Rows.Count > 0)
-                {
-                   string MessageValues = "";
-                    string MessageControlIDs = "";
-                    dataTable = ds.Tables[1];
-                    foreach (DataRow row in dataTable.Rows)
-                    {
-                        MessageValues += row["MessageID"].ToString() + ",";
-                        MessageControlIDs += row["MessageControlID"].ToString() + ",";
 
-                    }
-                    DialogResult result = MessageBox.Show("These Message Ids not exist in Message Values"+ MessageValues+" Do you want to proceed?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                    // Check the user's choice
-                    if (result == DialogResult.Yes)
+                    if (ds.Tables[0].Rows.Count > 0)
                     {
+                        string MessageValues = "";
+                        string MessageControlIDs = "";
+                        dataTable = ds.Tables[0];
+                        foreach (DataRow row in dataTable.Rows)
+                        {
+                            MessageValues += row["MessageID"].ToString() + ",";
+                            MessageControlIDs += row["MessageControlID"].ToString() + ",";
+
+                        }
+                        //its updation logicc
                         DataTable dataTable2 = new DataTable();
+
                         dataTable2.Clear();
                         MessageValues = GetCommaString(MessageValues);
                         MessageControlIDs = GetCommaString(MessageControlIDs);
-
                         //its will be update those whoes messsage value exist
                         bAL.CheckMessagValuesByMessageIds(MessageStatus, MessageRequestType, MessageType, MessageValues, MessageControlIDs, "UpdateCheckMessageValuesAndUpdatemailvxOML");
+                        logger.Debug($"These Message Control IDs  Status updated:  {MessageControlIDs}");
                         MessageBox.Show("These Message Control IDs  Status updated: " + MessageControlIDs);
-                        // User clicked Yes, perform the desired action
-                        // For example, navigate to another form or execute some code
-                        // YourAction();
                         return;
                     }
-                    else
+                    //its for thoese whoese message value not exist
+                    if (ds.Tables[1].Rows.Count > 0)
                     {
-                        // User clicked No, handle accordingly
-                        // For example, do nothing or show another message
-                        // HandleNoAction();
-                    }
-                   // MessageBox.Show("NO exist messageID in message values table");
-                  
-                }
-            }
-
-            if (MessageStatus == 1 && MessageType == "ORU")
-            {
-                ds = bAL.CheckMessagValuesByMessageIds(MessageStatus, MessageRequestType, MessageType,column1Data,column2Data, "CheckMessageValueByIDs");
-                if (ds.Tables[0].Rows.Count > 0)
-                {
-                    string MessageValues = "";
-                    string MessageControlIDs = "";
-                    dataTable.Clear();
-                    dataTable = ds.Tables[0];
-                    foreach (DataRow row in dataTable.Rows)
-                    {
-                        MessageValues += row["MessageID"].ToString() + ",";
-                        MessageControlIDs += row["MessageControlID"].ToString() + ",";
-
-                    }
-                    MessageValues = GetCommaString(MessageValues);
-                    MessageControlIDs = GetCommaString(MessageControlIDs);
-                    DataSet ds2 = new DataSet();
-                    ds2 = bAL.CheckMessagValuesByMessageIds(MessageStatus, MessageRequestType, MessageType, MessageValues, MessageControlIDs, "CheckMessageResponseIDsForORU");
-                    //its for which have message response ids
-                    if (ds2.Tables[0].Rows.Count > 0)
-                    {
-                        string MessageValues1 = "";
-                        string MessageControlIDs1 = "";
-                        //its updation logicc
-                        DataTable dataTable2 = new DataTable();
-                        dataTable2.Clear();
-                        dataTable2 = ds2.Tables[0];
-                        foreach (DataRow row in dataTable2.Rows)
-                        {
-                            MessageValues1 += row["MessageID"].ToString() + ",";
-                            MessageControlIDs1 += row["MessageControlID"].ToString() + ",";
-
-                        }
-
-                        MessageValues1 = GetCommaString(MessageValues1);
-                        MessageControlIDs1 = GetCommaString(MessageControlIDs1);
-                        bAL.CheckMessagValuesByMessageIds(MessageStatus, MessageRequestType, MessageType, MessageValues1, MessageControlIDs1, "UpdateCheckMessageValuesAndUpdatORU");
-                        MessageBox.Show("These Message Control IDs  Status updated: " + MessageControlIDs1);
-                        return;
-
-                    }
-                   
-                   //its for which nave no response id 
-                    if (ds2.Tables[1].Rows.Count > 0)
-                    {
-                        string MessageValues2 = "";
-                        string MessageControlIDs2 = "";
-                        dataTable.Clear();
-                        dataTable = ds2.Tables[1];
+                        string MessageValues = "";
+                        string MessageControlIDs = "";
+                        dataTable = ds.Tables[1];
                         foreach (DataRow row in dataTable.Rows)
                         {
-                            MessageValues2 += row["MessageID"].ToString() + ",";
-                            MessageControlIDs2 += row["MessageControlID"].ToString() + ",";
+                            MessageValues += row["MessageID"].ToString() + ",";
+                            MessageControlIDs += row["MessageControlID"].ToString() + ",";
 
                         }
-                        DialogResult result = MessageBox.Show("These Message Ids Have no Response Message IDs" + MessageValues2 + " Do you want to proceed?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        DialogResult result = MessageBox.Show("These Message Ids not exist in Message Values" + MessageValues + " Do you want to proceed?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        logger.Debug("These Message Ids not exist in Message Values" + MessageValues);
 
                         // Check the user's choice
                         if (result == DialogResult.Yes)
                         {
-                            
-                            MessageValues2 = GetCommaString(MessageValues2);
-                            MessageControlIDs2 = GetCommaString(MessageControlIDs2);
+                            DataTable dataTable2 = new DataTable();
+                            dataTable2.Clear();
+                            MessageValues = GetCommaString(MessageValues);
+                            MessageControlIDs = GetCommaString(MessageControlIDs);
 
                             //its will be update those whoes messsage value exist
-                            bAL.CheckMessagValuesByMessageIds(MessageStatus, MessageRequestType, MessageType, MessageValues2, MessageControlIDs2, "UpdateCheckMessageValuesAndUpdatORU");
+                            bAL.CheckMessagValuesByMessageIds(MessageStatus, MessageRequestType, MessageType, MessageValues, MessageControlIDs, "UpdateCheckMessageValuesAndUpdatemailvxOML");
                             MessageBox.Show("These Message Control IDs  Status updated: " + MessageControlIDs);
+                            logger.Debug("These Message Control IDs  Status updated: " + MessageControlIDs);
                             // User clicked Yes, perform the desired action
                             // For example, navigate to another form or execute some code
                             // YourAction();
@@ -321,46 +218,142 @@ namespace BacklogWin
                             // For example, do nothing or show another message
                             // HandleNoAction();
                         }
+                        // MessageBox.Show("NO exist messageID in message values table");
+
                     }
                 }
-                //its for thoese whoese message value not exist for oru
-                if (ds.Tables[1].Rows.Count > 0)
+
+                if (MessageStatus == 1 && MessageType == "ORU")
                 {
-                    string MessageValues = "";
-                    string MessageControlIDs = "";
-                    dataTable = ds.Tables[1];
-                    foreach (DataRow row in dataTable.Rows)
+                    ds = bAL.CheckMessagValuesByMessageIds(MessageStatus, MessageRequestType, MessageType, column1Data, column2Data, "CheckMessageValueByIDs");
+                    if (ds.Tables[0].Rows.Count > 0)
                     {
-                        MessageValues += row["MessageID"].ToString() + ",";
-                        MessageControlIDs += row["MessageControlID"].ToString() + ",";
+                        string MessageValues = "";
+                        string MessageControlIDs = "";
+                        dataTable.Clear();
+                        dataTable = ds.Tables[0];
+                        foreach (DataRow row in dataTable.Rows)
+                        {
+                            MessageValues += row["MessageID"].ToString() + ",";
+                            MessageControlIDs += row["MessageControlID"].ToString() + ",";
 
-                    }
-                    DialogResult result = MessageBox.Show("These Message Ids not exist in Message Values" + MessageValues + " Do you want to proceed?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                    // Check the user's choice
-                    if (result == DialogResult.Yes)
-                    {
-                        DataTable dataTable2 = new DataTable();
-                        dataTable2.Clear();
+                        }
                         MessageValues = GetCommaString(MessageValues);
                         MessageControlIDs = GetCommaString(MessageControlIDs);
-                        //its will be update those whoes messsage value exist
-                        bAL.CheckMessagValuesByMessageIds(MessageStatus, MessageRequestType, MessageType, MessageValues, MessageControlIDs, "UpdateCheckMessageValuesAndUpdatORU");
-                        MessageBox.Show("These Message Control IDs  Status updated: " + MessageControlIDs);
-                        // User clicked Yes, perform the desired action
-                        // For example, navigate to another form or execute some code
-                        // YourAction();
-                        return;
+                        DataSet ds2 = new DataSet();
+                        ds2 = bAL.CheckMessagValuesByMessageIds(MessageStatus, MessageRequestType, MessageType, MessageValues, MessageControlIDs, "CheckMessageResponseIDsForORU");
+                        //its for which have message response ids
+                        if (ds2.Tables[0].Rows.Count > 0)
+                        {
+                            string MessageValues1 = "";
+                            string MessageControlIDs1 = "";
+                            //its updation logicc
+                            DataTable dataTable2 = new DataTable();
+                            dataTable2.Clear();
+                            dataTable2 = ds2.Tables[0];
+                            foreach (DataRow row in dataTable2.Rows)
+                            {
+                                MessageValues1 += row["MessageID"].ToString() + ",";
+                                MessageControlIDs1 += row["MessageControlID"].ToString() + ",";
+
+                            }
+
+                            MessageValues1 = GetCommaString(MessageValues1);
+                            MessageControlIDs1 = GetCommaString(MessageControlIDs1);
+                            bAL.CheckMessagValuesByMessageIds(MessageStatus, MessageRequestType, MessageType, MessageValues1, MessageControlIDs1, "UpdateCheckMessageValuesAndUpdatORU");
+                            MessageBox.Show("These Message Control IDs  Status updated: " + MessageControlIDs1);
+                            logger.Debug("These Message Control IDs  Status updated: " + MessageControlIDs1);
+                            return;
+
+                        }
+
+                        //its for which nave no response id 
+                        if (ds2.Tables[1].Rows.Count > 0)
+                        {
+                            string MessageValues2 = "";
+                            string MessageControlIDs2 = "";
+                            dataTable.Clear();
+                            dataTable = ds2.Tables[1];
+                            foreach (DataRow row in dataTable.Rows)
+                            {
+                                MessageValues2 += row["MessageID"].ToString() + ",";
+                                MessageControlIDs2 += row["MessageControlID"].ToString() + ",";
+
+                            }
+                            DialogResult result = MessageBox.Show("These Message Ids Have no Response Message IDs" + MessageValues2 + " Do you want to proceed?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            logger.Debug("These Message Ids Have no Response Message IDs :" + MessageValues2);
+
+                            // Check the user's choice
+                            if (result == DialogResult.Yes)
+                            {
+
+                                MessageValues2 = GetCommaString(MessageValues2);
+                                MessageControlIDs2 = GetCommaString(MessageControlIDs2);
+
+                                //its will be update those whoes messsage value exist
+                                bAL.CheckMessagValuesByMessageIds(MessageStatus, MessageRequestType, MessageType, MessageValues2, MessageControlIDs2, "UpdateCheckMessageValuesAndUpdatORU");
+                                MessageBox.Show("These Message Control IDs  Status updated: " + MessageControlIDs);
+                                logger.Debug("These Message Control IDs  Status updated: " + MessageControlIDs);
+                                // User clicked Yes, perform the desired action
+                                // For example, navigate to another form or execute some code
+                                // YourAction();
+                                return;
+                            }
+                            else
+                            {
+                                // User clicked No, handle accordingly
+                                // For example, do nothing or show another message
+                                // HandleNoAction();
+                            }
+                        }
                     }
-                    else
+                    //its for thoese whoese message value not exist for oru
+                    if (ds.Tables[1].Rows.Count > 0)
                     {
-                        // User clicked No, handle accordingly
-                        // For example, do nothing or show another message
-                        // HandleNoAction();
+                        string MessageValues = "";
+                        string MessageControlIDs = "";
+                        dataTable = ds.Tables[1];
+                        foreach (DataRow row in dataTable.Rows)
+                        {
+                            MessageValues += row["MessageID"].ToString() + ",";
+                            MessageControlIDs += row["MessageControlID"].ToString() + ",";
+
+                        }
+                        DialogResult result = MessageBox.Show("These Message Ids not exist in Message Values" + MessageValues + " Do you want to proceed?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        logger.Debug("These Message Ids not exist in Message Values" + MessageValues);
+
+                        // Check the user's choice
+                        if (result == DialogResult.Yes)
+                        {
+                            DataTable dataTable2 = new DataTable();
+                            dataTable2.Clear();
+                            MessageValues = GetCommaString(MessageValues);
+                            MessageControlIDs = GetCommaString(MessageControlIDs);
+                            //its will be update those whoes messsage value exist
+                            bAL.CheckMessagValuesByMessageIds(MessageStatus, MessageRequestType, MessageType, MessageValues, MessageControlIDs, "UpdateCheckMessageValuesAndUpdatORU");
+                            MessageBox.Show("These Message Control IDs  Status updated: " + MessageControlIDs);
+                            logger.Debug("These Message Control IDs  Status updated: " + MessageControlIDs);
+                            // User clicked Yes, perform the desired action
+                            // For example, navigate to another form or execute some code
+                            // YourAction();
+                            return;
+                        }
+                        else
+                        {
+                            // User clicked No, handle accordingly
+                            // For example, do nothing or show another message
+                            // HandleNoAction();
+                        }
+                        // MessageBox.Show("NO exist messageID in message values table");
                     }
-                    // MessageBox.Show("NO exist messageID in message values table");
-                 }
+                }
+
             }
+            catch (Exception ex)
+            {
+               
+            }
+           
             //  MessageBox.Show("Message values: " + MessageValues);
         }
         
